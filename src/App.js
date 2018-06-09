@@ -2,10 +2,27 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Modal } from './Modal';
-import { PictureInPicture } from './PictureInPicture';
+import { PopupWindow } from './PopupWindow';
 
 class App extends Component {
   state = { showInline: true };
+
+  handleClickInline = e => {
+    e.preventDefault();
+    this.handleClose();
+  };
+
+  handleClose = () => {
+    this.setState({ showInline: true });
+  };
+
+  handleOpen = () => {
+    console.log('opened');
+    this.video.current.play();
+  };
+
+  video = React.createRef();
+
   render() {
     return (
       <div className="App">
@@ -21,17 +38,20 @@ class App extends Component {
         {this.state.showInline ? (
           <React.Fragment>
             <button onClick={() => this.setState({ showInline: false })}>
-              PiP
+              Popout
             </button>
             <video src="https://i.gifer.com/l44.mp4" loop autoPlay />
           </React.Fragment>
         ) : (
-          <PictureInPicture>
-            <button onClick={() => this.setState({ showInline: true })}>
-              inline
-            </button>
-            <video src="https://i.gifer.com/l44.mp4" loop autoPlay />
-          </PictureInPicture>
+          <PopupWindow onOpen={this.handleOpen} onClose={this.handleClose}>
+            <button onClick={this.handleClickInline}>inline</button>
+            <video
+              ref={this.video}
+              src="https://i.gifer.com/l44.mp4"
+              loop
+              autoPlay
+            />
+          </PopupWindow>
         )}
 
         <p className="App-intro">
