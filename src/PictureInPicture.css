@@ -1,0 +1,14 @@
+#portal-root .picture-in-picture {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+#portal-root .picture-in-picture video {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+video {
+  margin: 20px;
+}
