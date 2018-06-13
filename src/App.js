@@ -16,6 +16,23 @@ class App extends Component {
       </div>
     );
   }
+  // ref
 }
 
 export default App;
+
+/*
+  ==== 5 ====
+  import { Modal } from './Modal';
+  ===
+  <Modal>Hello from the other side</Modal>
+
+  ==== 7 ====
+  modal = React.createRef();
+
+  <button onClick={() => this.modal.current.open()}>open</button>
+  <Modal ref={this.modal}>
+    Hello from the other side
+    <button onClick={() => this.modal.current.close()}>close</button>
+  </Modal>
+*/
